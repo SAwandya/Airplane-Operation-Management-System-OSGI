@@ -11,7 +11,7 @@ import groundsupportservice.GroundSupportService;
 import weatherairtrafficservice.WeatherAirTrafficService;
 
 public class AirlineOperationsDashboard {
-    private static final Logger logger = LoggerFactory.getLogger(AirlineOperationsDashboard.class);
+//    private static final Logger logger = LoggerFactory.getLogger(AirlineOperationsDashboard.class);
     private final BundleContext context;
     private FlightScheduleService flightService;
     private GroundSupportService groundService;
@@ -40,7 +40,7 @@ public class AirlineOperationsDashboard {
         if (flightService != null && groundService != null && weatherService != null) {
             displayDashboard("AA123");
         } else {
-            logger.error("Required services missing for AirlineOperationsDashboard");
+//            logger.error("Required services missing for AirlineOperationsDashboard");
         }
     }
 
@@ -49,9 +49,9 @@ public class AirlineOperationsDashboard {
             String flightStatus = flightService.getFlightByNumber(flightNumber).getStatus();
             String groundStatus = groundService.getGroundSupportStatus(flightNumber);
             String weatherReport = weatherService.getWeatherReport();
-            logger.info("Flight {}: Status={}, Ground Support={}, Weather={}", flightNumber, flightStatus, groundStatus, weatherReport);
+//            logger.info("Flight {}: Status={}, Ground Support={}, Weather={}", flightNumber, flightStatus, groundStatus, weatherReport);
         } else {
-            logger.warn("Cannot display dashboard for {}: services unavailable", flightNumber);
+//            logger.warn("Cannot display dashboard for {}: services unavailable", flightNumber);
         }
     }
 }

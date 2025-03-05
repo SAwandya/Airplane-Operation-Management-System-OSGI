@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Random;
 
 public class WeatherAirTrafficServiceImpl implements WeatherAirTrafficService {
-    private static final Logger logger = LoggerFactory.getLogger(WeatherAirTrafficServiceImpl.class);
+//    private static final Logger logger = LoggerFactory.getLogger(WeatherAirTrafficServiceImpl.class);
     private final Random random = new Random();
     private final Map<String, String> flightPathAdjustments = new HashMap<>();
 
@@ -16,14 +16,14 @@ public class WeatherAirTrafficServiceImpl implements WeatherAirTrafficService {
     public String getWeatherReport() {
         String[] conditions = {"Clear", "Cloudy", "Rainy", "Stormy", "Foggy"};
         String condition = conditions[random.nextInt(conditions.length)];
-        logger.info("Generated weather report: {}", condition);
+//        logger.info("Generated weather report: {}", condition);
         return condition;
     }
 
     @Override
     public String getFlightPathAdjustment(String flightNumber) {
         if (flightNumber == null) {
-            logger.warn("Null flight number requested for path adjustment");
+//            logger.warn("Null flight number requested for path adjustment");
             return "Unknown";
         }
         if (!flightPathAdjustments.containsKey(flightNumber)) {
@@ -38,7 +38,7 @@ public class WeatherAirTrafficServiceImpl implements WeatherAirTrafficService {
             String[] adjustments = {"Rerouted North", "Rerouted South", "Altitude Change", "Speed Adjustment"};
             String newAdjustment = adjustments[random.nextInt(adjustments.length)];
             flightPathAdjustments.put(flightNumber, newAdjustment);
-            logger.info("Flight {} path adjusted: {}", flightNumber, newAdjustment);
+//            logger.info("Flight {} path adjusted: {}", flightNumber, newAdjustment);
         }
     }
 }

@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import baggagehandlingservice.BaggageHandlingService;
 
 public class BaggageTrackingSystem {
-    private static final Logger logger = LoggerFactory.getLogger(BaggageTrackingSystem.class);
+//    private static final Logger logger = LoggerFactory.getLogger(BaggageTrackingSystem.class);
     private final BundleContext context;
     private BaggageHandlingService baggageService;
 
@@ -23,19 +23,19 @@ public class BaggageTrackingSystem {
             if (baggageService != null) {
                 trackBaggage("BG123");
             } else {
-                logger.error("BaggageHandlingService not available");
+//                logger.error("BaggageHandlingService not available");
             }
         } else {
-            logger.error("No BaggageHandlingService reference found");
+//            logger.error("No BaggageHandlingService reference found");
         }
     }
 
     private void trackBaggage(String baggageId) {
         if (baggageService != null) {
             String status = baggageService.getBaggageStatus(baggageId);
-            logger.info("Baggage {} status: {}", baggageId, status);
+//            logger.info("Baggage {} status: {}", baggageId, status);
         } else {
-            logger.warn("Cannot track baggage {}: service unavailable", baggageId);
+//            logger.warn("Cannot track baggage {}: service unavailable", baggageId);
         }
     }
 }

@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: PassengerInformationDisplay
 Bundle-SymbolicName: PassengerInformationDisplay
 Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: passengerinformationdisplay.Activator
+Bundle-Activator: passengerinformationdisplay.PassengerInformationDisplayActivator
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Automatic-Module-Name: PassengerInformationDisplay
 Import-Package: com.osgi.flightsheduleservice,

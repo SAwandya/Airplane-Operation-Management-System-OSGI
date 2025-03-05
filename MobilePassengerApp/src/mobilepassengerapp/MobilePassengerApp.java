@@ -11,7 +11,7 @@ import baggagehandlingservice.BaggageHandlingService;
 import securitycheckservice.SecurityCheckService;
 
 public class MobilePassengerApp {
-    private static final Logger logger = LoggerFactory.getLogger(MobilePassengerApp.class);
+//    private static final Logger logger = LoggerFactory.getLogger(MobilePassengerApp.class);
     private final BundleContext context;
     private FlightScheduleService flightService;
     private BaggageHandlingService baggageService;
@@ -40,7 +40,7 @@ public class MobilePassengerApp {
         if (flightService != null && baggageService != null && securityService != null) {
             showPassengerInfo("AA123", "BG123", "P123");
         } else {
-            logger.error("Required services missing for MobilePassengerApp");
+//            logger.error("Required services missing for MobilePassengerApp");
         }
     }
 
@@ -49,9 +49,9 @@ public class MobilePassengerApp {
             String flightStatus = flightService.getFlightByNumber(flightNumber).getStatus();
             String baggageStatus = baggageService.getBaggageStatus(baggageId);
             String securityStatus = securityService.getScreeningStatus(passengerId);
-            logger.info("Flight {}: {}. Baggage {}: {}. Security for {}: {}", flightNumber, flightStatus, baggageId, baggageStatus, passengerId, securityStatus);
+//            logger.info("Flight {}: {}. Baggage {}: {}. Security for {}: {}", flightNumber, flightStatus, baggageId, baggageStatus, passengerId, securityStatus);
         } else {
-            logger.warn("Cannot show info for flight {}, baggage {}, passenger {}: services unavailable", flightNumber, baggageId, passengerId);
+//            logger.warn("Cannot show info for flight {}, baggage {}, passenger {}: services unavailable", flightNumber, baggageId, passengerId);
         }
     }
 }

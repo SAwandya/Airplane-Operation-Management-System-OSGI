@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: BaggageTrackingSystem
 Bundle-SymbolicName: BaggageTrackingSystem
 Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: baggagetrackingsystem.Activator
+Bundle-Activator: baggagetrackingsystem.BaggageTrackingSystemActivator
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Automatic-Module-Name: BaggageTrackingSystem
 Import-Package: baggagehandlingservice,

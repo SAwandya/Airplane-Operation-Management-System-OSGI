@@ -10,7 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class FlightScheduleActivator implements BundleActivator {
-    private static final Logger logger = LoggerFactory.getLogger(FlightScheduleActivator.class);
+//    private static final Logger logger = LoggerFactory.getLogger(FlightScheduleActivator.class);
     private FlightScheduleServiceImpl service;
     private ServiceRegistration<FlightScheduleService> registration;
 
@@ -18,7 +18,8 @@ public class FlightScheduleActivator implements BundleActivator {
     public void start(BundleContext context) {
         service = new FlightScheduleServiceImpl();
         registration = context.registerService(FlightScheduleService.class, service, null);
-        logger.info("FlightScheduleService registered");
+//        logger.info("FlightScheduleService registered");
+        System.out.println("Flight S");
     }
 
     @Override
@@ -29,6 +30,6 @@ public class FlightScheduleActivator implements BundleActivator {
         if (service != null) {
             service.shutdown();
         }
-        logger.info("FlightScheduleService unregistered and shut down");
+//        logger.info("FlightScheduleService unregistered and shut down");
     }
 }

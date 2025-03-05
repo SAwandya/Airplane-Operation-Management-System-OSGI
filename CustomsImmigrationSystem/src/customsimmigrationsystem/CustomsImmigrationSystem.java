@@ -9,7 +9,7 @@ import passengercheckinservice.PassengerCheckInService;
 import securitycheckservice.SecurityCheckService;
 
 public class CustomsImmigrationSystem {
-    private static final Logger logger = LoggerFactory.getLogger(CustomsImmigrationSystem.class);
+//    private static final Logger logger = LoggerFactory.getLogger(CustomsImmigrationSystem.class);
     private final BundleContext context;
     private SecurityCheckService securityService;
     private PassengerCheckInService checkInService;
@@ -32,7 +32,7 @@ public class CustomsImmigrationSystem {
         if (securityService != null && checkInService != null) {
             trackClearance("P123", "AA123");
         } else {
-            logger.error("Required services missing for CustomsImmigrationSystem");
+//            logger.error("Required services missing for CustomsImmigrationSystem");
         }
     }
 
@@ -40,9 +40,9 @@ public class CustomsImmigrationSystem {
         if (securityService != null && checkInService != null) {
             String securityStatus = securityService.getScreeningStatus(passengerId);
             boolean isCheckedIn = checkInService.isCheckedIn(passengerId, flightNumber);
-            logger.info("Passenger {} security status: {}. Checked in: {}", passengerId, securityStatus, isCheckedIn);
+//            logger.info("Passenger {} security status: {}. Checked in: {}", passengerId, securityStatus, isCheckedIn);
         } else {
-            logger.warn("Cannot track clearance for passenger {}, flight {}: services unavailable", passengerId, flightNumber);
+//            logger.warn("Cannot track clearance for passenger {}, flight {}: services unavailable", passengerId, flightNumber);
         }
     }
 }

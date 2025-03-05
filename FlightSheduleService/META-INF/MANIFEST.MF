@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: FlightSheduleService
 Bundle-SymbolicName: FlightSheduleService
 Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: com.osgi.flightsheduleservice.Activator
+Bundle-Activator: com.osgi.flightsheduleservice.FlightScheduleActivator
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Automatic-Module-Name: FlightSheduleService
 Import-Package: org.osgi.framework;version="1.3.0"

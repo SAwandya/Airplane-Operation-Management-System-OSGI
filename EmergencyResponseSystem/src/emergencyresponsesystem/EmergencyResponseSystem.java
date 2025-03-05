@@ -10,7 +10,7 @@ import com.osgi.flightsheduleservice.FlightScheduleService;
 import weatherairtrafficservice.WeatherAirTrafficService;
 
 public class EmergencyResponseSystem {
-    private static final Logger logger = LoggerFactory.getLogger(EmergencyResponseSystem.class);
+//    private static final Logger logger = LoggerFactory.getLogger(EmergencyResponseSystem.class);
     private final BundleContext context;
     private FlightScheduleService flightService;
     private WeatherAirTrafficService weatherService;
@@ -33,7 +33,7 @@ public class EmergencyResponseSystem {
         if (flightService != null && weatherService != null) {
             assessSituation("AA123");
         } else {
-            logger.error("Required services missing for EmergencyResponseSystem");
+//            logger.error("Required services missing for EmergencyResponseSystem");
         }
     }
 
@@ -41,9 +41,9 @@ public class EmergencyResponseSystem {
         if (flightService != null && weatherService != null) {
             String flightStatus = flightService.getFlightByNumber(flightNumber).getStatus();
             String weatherReport = weatherService.getWeatherReport();
-            logger.info("Flight {} status: {}. Weather: {}", flightNumber, flightStatus, weatherReport);
+//            logger.info("Flight {} status: {}. Weather: {}", flightNumber, flightStatus, weatherReport);
         } else {
-            logger.warn("Cannot assess situation for {}: services unavailable", flightNumber);
+//            logger.warn("Cannot assess situation for {}: services unavailable", flightNumber);
         }
     }
 }

@@ -10,7 +10,7 @@ import com.osgi.flightsheduleservice.FlightScheduleListener;
 import com.osgi.flightsheduleservice.FlightScheduleService;
 
 public class PassengerInformationDisplay implements FlightScheduleListener {
-    private static final Logger logger = LoggerFactory.getLogger(PassengerInformationDisplay.class);
+//    private static final Logger logger = LoggerFactory.getLogger(PassengerInformationDisplay.class);
     private final BundleContext context;
     private FlightScheduleService flightService;
 
@@ -26,10 +26,10 @@ public class PassengerInformationDisplay implements FlightScheduleListener {
                 flightService.registerListener(this);
                 displayFlightInfo();
             } else {
-                logger.error("FlightScheduleService not available");
+//                logger.error("FlightScheduleService not available");
             }
         } else {
-            logger.error("No FlightScheduleService reference found");
+//            logger.error("No FlightScheduleService reference found");
         }
     }
 
@@ -43,23 +43,23 @@ public class PassengerInformationDisplay implements FlightScheduleListener {
     private void displayFlightInfo() {
         if (flightService != null) {
             for (Flight flight : flightService.getAllFlights()) {
-                logger.info("Flight {}: Status={}, Gate={}, ETA={}", flight.getFlightNumber(),
-                        flight.getStatus(), flight.getGate(), flight.getEstimatedArrival());
+//                logger.info("Flight {}: Status={}, Gate={}, ETA={}", flight.getFlightNumber(),
+//                        flight.getStatus(), flight.getGate(), flight.getEstimatedArrival());
             }
         } else {
-            logger.warn("Cannot display flight info: service unavailable");
+//            logger.warn("Cannot display flight info: service unavailable");
         }
     }
 
     @Override
     public void onStatusChanged(String flightNumber, String newStatus) {
-        logger.info("Flight {} status updated to {}", flightNumber, newStatus);
+//        logger.info("Flight {} status updated to {}", flightNumber, newStatus);
         displayFlightInfo();
     }
 
     @Override
     public void onGateChanged(String flightNumber, String newGate) {
-        logger.info("Flight {} gate updated to {}", flightNumber, newGate);
+//        logger.info("Flight {} gate updated to {}", flightNumber, newGate);
         displayFlightInfo();
     }
 

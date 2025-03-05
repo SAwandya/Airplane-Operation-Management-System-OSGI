@@ -11,7 +11,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class FlightScheduleServiceImpl implements FlightScheduleService {
-    private static final Logger logger = LoggerFactory.getLogger(FlightScheduleServiceImpl.class);
+//    private static final Logger logger = LoggerFactory.getLogger(FlightScheduleServiceImpl.class);
     private final Map<String, Flight> flights = new ConcurrentHashMap<>();
     private final List<FlightScheduleListener> listeners = new CopyOnWriteArrayList<>();
     private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
@@ -36,7 +36,7 @@ public class FlightScheduleServiceImpl implements FlightScheduleService {
                 new Date(now + 5_400_000), new Date(now + 5_400_000),
                 new Date(now + 9_000_000), new Date(now + 9_000_000),
                 "Delayed", "T2", "G15", "Boeing 757"));
-        logger.info("Initialized {} flights", flights.size());
+//        logger.info("Initialized {} flights", flights.size());
     }
 
     private void startFlightUpdateSimulator() {
@@ -49,7 +49,7 @@ public class FlightScheduleServiceImpl implements FlightScheduleService {
                     updateFlightStatusOrGate(flight);
                 }
             } catch (Exception e) {
-                logger.error("Error in flight update simulator", e);
+//                logger.error("Error in flight update simulator", e);
             }
         }, 5, 10, TimeUnit.SECONDS);
     }
@@ -63,14 +63,14 @@ public class FlightScheduleServiceImpl implements FlightScheduleService {
             String newStatus = statuses[random.nextInt(statuses.length)];
             if (!newStatus.equals(currentStatus) && isValidStatusTransition(currentStatus, newStatus)) {
                 flight.setStatus(newStatus);
-                logger.info("Flight {} status updated to {}", flight.getFlightNumber(), newStatus);
+//                logger.info("Flight {} status updated to {}", flight.getFlightNumber(), newStatus);
                 notifyStatusChange(flight.getFlightNumber(), newStatus);
             }
         } else {
             String newGate = gates[random.nextInt(gates.length)];
             if (!newGate.equals(flight.getGate())) {
                 flight.setGate(newGate);
-                logger.info("Flight {} gate updated to {}", flight.getFlightNumber(), newGate);
+//                logger.info("Flight {} gate updated to {}", flight.getFlightNumber(), newGate);
                 notifyGateChange(flight.getFlightNumber(), newGate);
             }
         }
@@ -101,7 +101,7 @@ public class FlightScheduleServiceImpl implements FlightScheduleService {
     @Override
     public boolean updateFlight(Flight flight) {
         if (flight == null || flight.getFlightNumber() == null) {
-            logger.warn("Invalid flight update attempt: {}", flight);
+//            logger.warn("Invalid flight update attempt: {}", flight);
             return false;
         }
         Flight oldFlight = flights.put(flight.getFlightNumber(), flight);
@@ -114,7 +114,7 @@ public class FlightScheduleServiceImpl implements FlightScheduleService {
             }
         }
         notifyFlightUpdate(flight);
-        logger.info("Flight {} updated successfully", flight.getFlightNumber());
+//        logger.info("Flight {} updated successfully", flight.getFlightNumber());
         return true;
     }
 
@@ -122,7 +122,7 @@ public class FlightScheduleServiceImpl implements FlightScheduleService {
     public void registerListener(FlightScheduleListener listener) {
         if (listener != null && !listeners.contains(listener)) {
             listeners.add(listener);
-            logger.debug("Listener registered: {}", listener.getClass().getName());
+//            logger.debug("Listener registered: {}", listener.getClass().getName());
         }
     }
 
@@ -130,7 +130,7 @@ public class FlightScheduleServiceImpl implements FlightScheduleService {
     public void unregisterListener(FlightScheduleListener listener) {
         if (listener != null) {
             listeners.remove(listener);
-            logger.debug("Listener unregistered: {}", listener.getClass().getName());
+//            logger.debug("Listener unregistered: {}", listener.getClass().getName());
         }
     }
 
@@ -162,6 +162,6 @@ public class FlightScheduleServiceImpl implements FlightScheduleService {
             scheduler.shutdownNow();
             Thread.currentThread().interrupt();
         }
-        logger.info("FlightScheduleServiceImpl shut down");
+//        logger.info("FlightScheduleServiceImpl shut down");
     }
 }

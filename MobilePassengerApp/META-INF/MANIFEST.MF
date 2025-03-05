@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: MobilePassengerApp
 Bundle-SymbolicName: MobilePassengerApp
 Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: mobilepassengerapp.Activator
+Bundle-Activator: mobilepassengerapp.MobilePassengerAppActivator
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Automatic-Module-Name: MobilePassengerApp
 Import-Package: baggagehandlingservice,
