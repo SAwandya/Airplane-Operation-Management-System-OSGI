@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: PassengerInformationDisplay
+Bundle-SymbolicName: PassengerInformationDisplay
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: passengerinformationdisplay.Activator
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Automatic-Module-Name: PassengerInformationDisplay
+Import-Package: com.osgi.flightsheduleservice,
+ org.osgi.framework;version="1.3.0"
+Bundle-ActivationPolicy: lazy

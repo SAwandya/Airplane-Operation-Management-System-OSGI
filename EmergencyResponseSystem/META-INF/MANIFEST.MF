@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: EmergencyResponseSystem
+Bundle-SymbolicName: EmergencyResponseSystem
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: emergencyresponsesystem.Activator
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Automatic-Module-Name: EmergencyResponseSystem
+Import-Package: com.osgi.flightsheduleservice,
+ org.osgi.framework;version="1.3.0",
+ weatherairtrafficservice
+Bundle-ActivationPolicy: lazy

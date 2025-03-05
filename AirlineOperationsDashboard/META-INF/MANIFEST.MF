@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: AirlineOperationsDashboard
+Bundle-SymbolicName: AirlineOperationsDashboard
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: airlineoperationsdashboard.Activator
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Automatic-Module-Name: AirlineOperationsDashboard
+Import-Package: com.osgi.flightsheduleservice,
+ groundsupportservice,
+ org.osgi.framework;version="1.3.0",
+ weatherairtrafficservice
+Bundle-ActivationPolicy: lazy
