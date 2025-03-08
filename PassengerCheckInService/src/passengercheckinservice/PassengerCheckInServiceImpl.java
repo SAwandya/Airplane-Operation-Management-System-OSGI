@@ -9,6 +9,13 @@ public class PassengerCheckInServiceImpl implements PassengerCheckInService {
 //    private static final Logger logger = LoggerFactory.getLogger(PassengerCheckInServiceImpl.class);
     private final ConcurrentHashMap<String, String> passengerSeats = new ConcurrentHashMap<>();
 
+    public PassengerCheckInServiceImpl() {
+        // Sample data for testing
+        passengerSeats.put("P123_FL123", "12A");
+        passengerSeats.put("P456_FL456", "15B");
+//        logger.info("PassengerCheckInService initialized");
+    }
+    
     @Override
     public boolean isCheckedIn(String passengerId, String flightNumber) {
         if (passengerId == null || flightNumber == null) {
@@ -38,5 +45,12 @@ public class PassengerCheckInServiceImpl implements PassengerCheckInService {
         String key = passengerId + "_" + flightNumber;
         passengerSeats.put(key, seat);
 //        logger.info("Passenger {} checked in for flight {} with seat {}", passengerId, flightNumber, seat);
+    }
+    
+    public String getPassengerDetails(String passengerId, String flightNumber) {
+        if (isCheckedIn(passengerId, flightNumber)) {
+            return "Passenger ID: " + passengerId + ", Flight: " + flightNumber + ", Seat: " + getSeat(passengerId, flightNumber);
+        }
+        return "Passenger ID: " + passengerId + ", Flight: " + flightNumber + " - Not checked in";
     }
 }
