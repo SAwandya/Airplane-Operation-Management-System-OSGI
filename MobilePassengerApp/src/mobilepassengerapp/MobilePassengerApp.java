@@ -1,57 +1,115 @@
 package mobilepassengerapp;
 
 import org.osgi.framework.BundleContext;
+
+import java.util.Scanner;
+
 import org.osgi.framework.ServiceReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.osgi.flightsheduleservice.FlightScheduleService;
-
 import baggagehandlingservice.BaggageHandlingService;
-import securitycheckservice.SecurityCheckService;
+import baggagehandlingservice.BaggageHandlingServiceImpl;
 
 public class MobilePassengerApp {
-//    private static final Logger logger = LoggerFactory.getLogger(MobilePassengerApp.class);
-    private final BundleContext context;
-    private FlightScheduleService flightService;
     private BaggageHandlingService baggageService;
-    private SecurityCheckService securityService;
+    private Scanner scanner;
 
+    // Constructor for non-OSGi usage
+    public MobilePassengerApp() {
+        this.baggageService = new BaggageHandlingServiceImpl();
+        this.scanner = new Scanner(System.in);
+    }
+
+    // Constructor for OSGi usage
     public MobilePassengerApp(BundleContext context) {
-        this.context = context;
+        this.scanner = new Scanner(System.in);
+        ServiceReference<BaggageHandlingService> ref = context.getServiceReference(BaggageHandlingService.class);
+        if (ref != null) {
+            this.baggageService = context.getService(ref);
+        }
     }
 
     public void start() {
-        ServiceReference<FlightScheduleService> flightRef = context.getServiceReference(FlightScheduleService.class);
-        if (flightRef != null) {
-            flightService = context.getService(flightRef);
+        if (baggageService == null) {
+            System.out.println("Baggage Handling Service is currently unavailable.");
+            return;
         }
+        System.out.println("========================================");
+        System.out.println("Welcome to the Mobile Passenger App");
+        System.out.println("Track your baggage status on the go!");
+        System.out.println("========================================");
 
-        ServiceReference<BaggageHandlingService> baggageRef = context.getServiceReference(BaggageHandlingService.class);
-        if (baggageRef != null) {
-            baggageService = context.getService(baggageRef);
+        boolean continueLoop = true;
+        while (continueLoop) {
+            String passengerId = askForPassengerId();
+            String flightNumber = askForFlightNumber();
+            getBaggageStatus(passengerId, flightNumber);
+            continueLoop = askToContinue();
         }
-
-        ServiceReference<SecurityCheckService> securityRef = context.getServiceReference(SecurityCheckService.class);
-        if (securityRef != null) {
-            securityService = context.getService(securityRef);
-        }
-
-        if (flightService != null && baggageService != null && securityService != null) {
-            showPassengerInfo("AA123", "BG123", "P123");
-        } else {
-//            logger.error("Required services missing for MobilePassengerApp");
-        }
+        System.out.println("Thank you for using the Mobile Passenger App. Safe travels!");
     }
 
-    private void showPassengerInfo(String flightNumber, String baggageId, String passengerId) {
-        if (flightService != null && baggageService != null && securityService != null) {
-            String flightStatus = flightService.getFlightByNumber(flightNumber).getStatus();
-            String baggageStatus = baggageService.getBaggageStatus(baggageId);
-            String securityStatus = securityService.getScreeningStatus(passengerId);
-//            logger.info("Flight {}: {}. Baggage {}: {}. Security for {}: {}", flightNumber, flightStatus, baggageId, baggageStatus, passengerId, securityStatus);
-        } else {
-//            logger.warn("Cannot show info for flight {}, baggage {}, passenger {}: services unavailable", flightNumber, baggageId, passengerId);
+    public void stop() {
+        if (scanner != null) {
+            scanner.close();
         }
+        System.out.println("MobilePassengerApp stopped");
+    }
+
+    private String askForPassengerId() {
+        System.out.print("Enter your passenger ID (e.g., P001): ");
+        String input = scanner.nextLine().trim();
+        if (input.isEmpty() || !input.matches("P\\d{3}")) {
+            System.out.println("Invalid passenger ID. It should be 'P' followed by 3 digits (e.g., P001). Try again.");
+            return askForPassengerId();
+        }
+        return input;
+    }
+
+    private String askForFlightNumber() {
+        System.out.print("Enter your flight number (e.g., FL123): ");
+        String input = scanner.nextLine().trim();
+        if (input.isEmpty() || !input.matches("FL\\d{3}")) {
+            System.out.println("Invalid flight number. It should be 'FL' followed by 3 digits (e.g., FL123). Try again.");
+            return askForFlightNumber();
+        }
+        return input;
+    }
+
+    private void getBaggageStatus(String passengerId, String flightNumber) {
+        String status = baggageService.getBaggageStatus(passengerId, flightNumber);
+        System.out.println("\n--- Baggage Status ---");
+        System.out.println("Passenger ID: " + passengerId);
+        System.out.println("Flight Number: " + flightNumber);
+        System.out.println("Status: " + status);
+    }
+
+    private boolean askToContinue() {
+        System.out.print("\nCheck another baggage? (yes/no): ");
+        String response = scanner.nextLine().trim().toLowerCase();
+        while (!response.equals("yes") && !response.equals("no") && !response.equals("y") && !response.equals("n")) {
+            System.out.print("Please enter 'yes' or 'no': ");
+            response = scanner.nextLine().trim().toLowerCase();
+        }
+        return response.equals("yes") || response.equals("y");
+    }
+
+    // Additional method: Display help
+    public void showHelp() {
+        System.out.println("\n--- Help ---");
+        System.out.println("This app helps you track your baggage status.");
+        System.out.println("- Passenger ID format: 'P' followed by 3 digits (e.g., P001).");
+        System.out.println("- Flight number format: 'FL' followed by 3 digits (e.g., FL123).");
+        System.out.println("Follow the prompts to check your baggage status.");
+    }
+
+    // Additional method: Reset scanner (useful for testing or reinitialization)
+    public void resetScanner() {
+        if (scanner != null) {
+            scanner.close();
+        }
+        scanner = new Scanner(System.in);
+        System.out.println("Scanner reset.");
     }
 }

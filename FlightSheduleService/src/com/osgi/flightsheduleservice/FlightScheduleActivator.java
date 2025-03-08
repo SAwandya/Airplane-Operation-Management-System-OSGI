@@ -19,7 +19,7 @@ public class FlightScheduleActivator implements BundleActivator {
         service = new FlightScheduleServiceImpl();
         registration = context.registerService(FlightScheduleService.class, service, null);
 //        logger.info("FlightScheduleService registered");
-        System.out.println("Flight S");
+        System.out.println("Flight Service start...");
     }
 
     @Override

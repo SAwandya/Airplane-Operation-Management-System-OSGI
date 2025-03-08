@@ -14,9 +14,10 @@ public class AirlineOperationsDashboardActivator implements BundleActivator {
 
     @Override
     public void start(BundleContext context) {
-        dashboard = new AirlineOperationsDashboard(context);
-        dashboard.start();
+          dashboard = new AirlineOperationsDashboard(context);
+          dashboard.start();
 //        logger.info("AirlineOperationsDashboard started");
+          System.out.println("Airline operation dashboard concumer start..");
     }
 
     @Override

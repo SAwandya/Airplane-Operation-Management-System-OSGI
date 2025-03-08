@@ -1,6 +1,9 @@
 package baggagehandlingservice;
 
+import java.util.List;
+
 public interface BaggageHandlingService {
-    String getBaggageStatus(String baggageId);
-    void updateBaggageStatus(String baggageId, String status);
+    String getBaggageStatusByTag(String tagNumber);
+    String getBaggageStatusByPassenger(String passengerName, String flightNumber);
+    String getBaggageStatus(String passengerId, String flightNumber);
 }

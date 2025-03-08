@@ -17,7 +17,7 @@ public class WeatherAirTrafficActivator implements BundleActivator {
     public void start(BundleContext context) {
         WeatherAirTrafficService service = new WeatherAirTrafficServiceImpl();
         registration = context.registerService(WeatherAirTrafficService.class, service, null);
-//        logger.info("WeatherAirTrafficService registered");
+////        logger.info("WeatherAirTrafficService registered");
         System.out.println("Weather service start..");
     }
 

@@ -18,6 +18,7 @@ public class PassengerCheckInActivator implements BundleActivator {
         PassengerCheckInService service = new PassengerCheckInServiceImpl();
         registration = context.registerService(PassengerCheckInService.class, service, null);
 //        logger.info("PassengerCheckInService registered");
+        System.out.println("Passenger checking service started...");
     }
 
     @Override

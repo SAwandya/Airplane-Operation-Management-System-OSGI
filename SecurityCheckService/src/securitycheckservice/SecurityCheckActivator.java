@@ -12,9 +12,11 @@ public class SecurityCheckActivator implements BundleActivator {
 
     @Override
     public void start(BundleContext context) {
+        System.out.println("Security Check servive start..");
+
         SecurityCheckService service = new SecurityCheckServiceImpl();
         registration = context.registerService(SecurityCheckService.class, service, null);
-//        logger.info("SecurityCheckService registered");
+////        logger.info("SecurityCheckService registered");
     }
 
     @Override

@@ -9,14 +9,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class PassengerInformationDisplayActivator implements BundleActivator {
-    private static final Logger logger = LoggerFactory.getLogger(PassengerInformationDisplayActivator.class);
+//    private static final Logger logger = LoggerFactory.getLogger(PassengerInformationDisplayActivator.class);
     private PassengerInformationDisplay display;
 
     @Override
     public void start(BundleContext context) {
         display = new PassengerInformationDisplay(context);
         display.start();
-        logger.info("PassengerInformationDisplay started");
+//        logger.info("PassengerInformationDisplay started");
     }
 
     @Override
@@ -24,6 +24,6 @@ public class PassengerInformationDisplayActivator implements BundleActivator {
         if (display != null) {
             display.stop();
         }
-        logger.info("PassengerInformationDisplay stopped");
+//        logger.info("PassengerInformationDisplay stopped");
     }
 }
