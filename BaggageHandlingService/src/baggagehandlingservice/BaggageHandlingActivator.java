@@ -12,11 +12,12 @@ import org.slf4j.LoggerFactory;
 public class BaggageHandlingActivator implements BundleActivator {
 //    private static final Logger logger = LoggerFactory.getLogger(BaggageHandlingActivator.class);
     private ServiceRegistration<BaggageHandlingService> registration;
+    
 
     @Override
     public void start(BundleContext context) {
-        BaggageHandlingService service = new BaggageHandlingServiceImpl();
-        registration = context.registerService(BaggageHandlingService.class, service, null);
+//        BaggageHandlingService service = new BaggageHandlingServiceImpl();
+//        registration = context.registerService(BaggageHandlingService.class, service, null);
 //        logger.info("BaggageHandlingService registered");
         System.out.println("Ahunadoooooooooooooooooooooooooooooooooooooooooooo");
     }

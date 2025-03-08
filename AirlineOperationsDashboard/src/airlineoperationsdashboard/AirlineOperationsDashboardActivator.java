@@ -3,11 +3,6 @@ package airlineoperationsdashboard;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
-import org.osgi.framework.BundleActivator;
-import org.osgi.framework.BundleContext;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 public class AirlineOperationsDashboardActivator implements BundleActivator {
 //    private static final Logger logger = LoggerFactory.getLogger(AirlineOperationsDashboardActivator.class);
     private AirlineOperationsDashboard dashboard;
