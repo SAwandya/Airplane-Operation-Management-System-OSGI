@@ -6,7 +6,7 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="F:/Aireplane_new/Airplane-Operation-Management-System-OSGI-SAwandya-patch-2/libs/slf4j-api-2.0.16.jar">
+	<classpathentry kind="lib" path="F:/y3s2/new repo/Airplane-Operation-Management-System-OSGI/libs/slf4j-api-2.0.16.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
