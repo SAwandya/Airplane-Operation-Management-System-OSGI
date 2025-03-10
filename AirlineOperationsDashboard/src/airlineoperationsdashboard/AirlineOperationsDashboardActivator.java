@@ -2,6 +2,8 @@ package airlineoperationsdashboard;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class AirlineOperationsDashboardActivator implements BundleActivator {
 //    private static final Logger logger = LoggerFactory.getLogger(AirlineOperationsDashboardActivator.class);
@@ -9,9 +11,10 @@ public class AirlineOperationsDashboardActivator implements BundleActivator {
 
     @Override
     public void start(BundleContext context) {
-        dashboard = new AirlineOperationsDashboard(context);
-        dashboard.start();
+          dashboard = new AirlineOperationsDashboard(context);
+          dashboard.start();
 //        logger.info("AirlineOperationsDashboard started");
+          System.out.println("Airline operation dashboard concumer start..");
     }
 
     @Override

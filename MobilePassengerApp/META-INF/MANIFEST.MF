@@ -7,7 +7,5 @@ Bundle-Activator: mobilepassengerapp.MobilePassengerAppActivator
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Automatic-Module-Name: MobilePassengerApp
 Import-Package: baggagehandlingservice,
- com.osgi.flightsheduleservice,
- org.osgi.framework;version="1.3.0",
- securitycheckservice
+ org.osgi.framework;version="1.3.0"
 Bundle-ActivationPolicy: lazy

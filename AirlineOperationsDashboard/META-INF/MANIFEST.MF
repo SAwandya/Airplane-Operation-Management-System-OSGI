@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: AirlineOperationsDashboard
 Bundle-SymbolicName: AirlineOperationsDashboard
 Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: airlineoperationsdashboard.Activator
+Bundle-Activator: airlineoperationsdashboard.AirlineOperationsDashboardActivator
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Automatic-Module-Name: AirlineOperationsDashboard
 Import-Package: com.osgi.flightsheduleservice,

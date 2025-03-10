@@ -24,15 +24,15 @@ public class FlightScheduleServiceImpl implements FlightScheduleService {
 
     private void initializeFlights() {
         long now = System.currentTimeMillis();
-        flights.put("AA123", new Flight("AA123", "American Airlines", "LAX", "JFK",
+        flights.put("FL123", new Flight("FL123", "American Airlines", "LAX", "JFK",
                 new Date(now + 3_600_000), new Date(now + 3_600_000),
                 new Date(now + 18_000_000), new Date(now + 18_000_000),
                 "Scheduled", "T1", "G12", "Boeing 737"));
-        flights.put("UA456", new Flight("UA456", "United Airlines", "SFO", "ORD",
+        flights.put("FL456", new Flight("FL456", "United Airlines", "SFO", "ORD",
                 new Date(now + 7_200_000), new Date(now + 7_200_000),
                 new Date(now + 14_400_000), new Date(now + 14_400_000),
                 "Scheduled", "T3", "G22", "Airbus A320"));
-        flights.put("DL789", new Flight("DL789", "Delta Airlines", "ATL", "MIA",
+        flights.put("FL789", new Flight("FL789", "Delta Airlines", "ATL", "MIA",
                 new Date(now + 5_400_000), new Date(now + 5_400_000),
                 new Date(now + 9_000_000), new Date(now + 9_000_000),
                 "Delayed", "T2", "G15", "Boeing 757"));

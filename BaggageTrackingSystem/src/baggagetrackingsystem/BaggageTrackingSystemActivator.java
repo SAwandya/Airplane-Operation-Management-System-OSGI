@@ -3,8 +3,6 @@ package baggagetrackingsystem;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
-import org.osgi.framework.BundleActivator;
-import org.osgi.framework.BundleContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,7 +19,9 @@ public class BaggageTrackingSystemActivator implements BundleActivator {
 
     @Override
     public void stop(BundleContext context) {
-        trackingSystem = null;
+        if (trackingSystem != null) {
+            trackingSystem.stop();
+        }
 //        logger.info("BaggageTrackingSystem stopped");
     }
 }

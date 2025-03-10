@@ -5,29 +5,61 @@ import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.ConcurrentHashMap;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class BaggageHandlingServiceImpl implements BaggageHandlingService {
-//    private static final Logger logger = LoggerFactory.getLogger(BaggageHandlingServiceImpl.class);
-    private final ConcurrentHashMap<String, String> baggageStatus = new ConcurrentHashMap<>();
+    private Map<String, String> baggageByTag = new HashMap<>();
+    private Map<String, Map<String, String>> baggageByPassenger = new HashMap<>(); // passenger -> flight -> status
+
+    private Map<String, Map<String, String>> baggageData = new HashMap<>();
 
     public BaggageHandlingServiceImpl() {
-        baggageStatus.put("BG123", "Checked In");
-        baggageStatus.put("BG456", "In Transit");
-        baggageStatus.put("BG789", "Delivered");
-//        logger.info("BaggageHandlingService initialized with {} baggage entries", baggageStatus.size());
-    }
+        // Sample data
+        baggageByTag.put("TAG123", "Checked In");
+        baggageByTag.put("TAG456", "In Transit");
+        baggageByTag.put("TAG789", "Loaded");
 
-    @Override
-    public String getBaggageStatus(String baggageId) {
-        return baggageStatus.getOrDefault(baggageId, "Unknown");
-    }
+        Map<String, String> johnDoeFlights = new HashMap<>();
+        johnDoeFlights.put("FL123", "Checked In");
+        baggageByPassenger.put("John Doe", johnDoeFlights);
 
+        Map<String, String> janeSmithFlights = new HashMap<>();
+        janeSmithFlights.put("FL456", "In Transit");
+        baggageByPassenger.put("Jane Smith", janeSmithFlights);
+        
+     // Sample data: passengerId -> flightNumber -> status
+        Map<String, String> johnFlights = new HashMap<>();
+        johnFlights.put("FL123", "Checked In");
+        baggageData.put("P001", johnFlights);
+
+        Map<String, String> janeFlights = new HashMap<>();
+        janeFlights.put("FL456", "In Transit");
+        baggageData.put("P002", janeFlights);
+    }
+    
     @Override
-    public void updateBaggageStatus(String baggageId, String status) {
-        if (baggageId == null || status == null) {
-//            logger.warn("Invalid baggage update: baggageId={}, status={}", baggageId, status);
-            return;
+    public String getBaggageStatus(String passengerId, String flightNumber) {
+        Map<String, String> passengerFlights = baggageData.get(passengerId);
+        if (passengerFlights != null) {
+            return passengerFlights.getOrDefault(flightNumber, "No baggage found for this flight");
         }
-        baggageStatus.put(baggageId, status);
-//        logger.info("Baggage {} status updated to {}", baggageId, status);
+        return "Passenger not found";
+    }
+
+    @Override
+    public String getBaggageStatusByTag(String tagNumber) {
+        return baggageByTag.getOrDefault(tagNumber, "Baggage not found");
+    }
+
+    @Override
+    public String getBaggageStatusByPassenger(String passengerName, String flightNumber) {
+        Map<String, String> passengerFlights = baggageByPassenger.get(passengerName);
+        if (passengerFlights != null) {
+            return passengerFlights.getOrDefault(flightNumber, "No baggage found for this flight");
+        }
+        return "Passenger not found";
     }
 }
